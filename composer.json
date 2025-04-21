@@ -1,0 +1,20 @@
+{
+  "name": "ongudidan/mpesa-sdk",
+  "description": "This package seeks to help php developers implement the various Mpesa APIs without much hustle. It is based on the REST API whose documentation is available on http://developer.safaricom.co.ke.",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "Mpesa\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "ongudidan",
+      "email": "ongudidan@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+
+  }
+}

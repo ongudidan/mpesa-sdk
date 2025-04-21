@@ -1,0 +1,169 @@
+Let me guide you step-by-step on how to use the **vanilla PHP M-Pesa class** I provided earlier. This process assumes that you have basic knowledge of PHP, and you'll be using **vanilla PHP** without any frameworks like Laravel or Yii2.
+
+### Steps to Use the Vanilla PHP M-Pesa Class:
+
+#### 1. **Install Dependencies** (Optional):
+If you're using a package that requires Composer, such as the **M-Pesa SDK**, you can install it via Composer. If you don’t have Composer installed yet, follow [this link to install Composer](https://getcomposer.org/).
+
+If you're using a library like `Mpesa`, you should first install it using:
+
+```bash
+composer require mpesa/mpesa
+```
+
+But if you don’t want to use Composer and just want to copy the code I provided, you can ignore this step.
+
+#### 2. **Create a New PHP File (e.g., `MpesaController.php`)**:
+Create a new PHP file where you'll put the M-Pesa controller class. For example, `MpesaController.php` or whatever you prefer.
+
+```php
+// MpesaController.php
+
+<?php
+
+// Include the Mpesa SDK
+require_once 'vendor/autoload.php';
+
+class MpesaController {
+
+    private $mpesa;
+
+    public function __construct() {
+        // Initialize Mpesa SDK
+        $this->mpesa = new \Mpesa\Mpesa();
+    }
+
+    // Define the actions such as B2C, C2B, STK Push etc.
+    public function b2c() {
+        $data = [
+            'Initiator' => 'API user created on Safaricom Business dashboard',
+            'initiatorPassword' => 'Password of the API user',
+            'CommandID' => 'BusinessPayment', // or SalaryPayment, PromotionPayment
+            'Amount' => '100', // Amount to send
+            'PartyA' => '600XXX', // Your shortcode
+            'PartyB' => '2547XXXXXXXX', // Customer phone number
+            'Remarks' => 'Salary payment',
+            'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
+            'ResultURL' => 'https://yourdomain.com/result',
+            'Occasion' => 'JunePayroll',
+            'environment' => 'sandbox',
+            'consumer_key' => 'your_consumer_key',
+            'consumer_secret' => 'your_consumer_secret',
+        ];
+
+        $response = $this->mpesa->b2c($data);
+        echo json_encode($response);
+    }
+
+    // Similar methods for accountBalance, c2b, reversal, etc. (as I defined earlier)
+}
+?>
+```
+
+#### 3. **Create a Front Controller to Trigger Actions**:
+
+You need a front controller or a simple script that triggers the actions defined in `MpesaController.php`.
+
+Example file: `index.php`
+
+```php
+<?php
+
+// Include the MpesaController
+require_once 'MpesaController.php';
+
+// Initialize the MpesaController class
+$mpesaController = new MpesaController();
+
+// Call the desired action (for example, B2C)
+$mpesaController->b2c(); // You can replace this with other methods like $mpesaController->stkPush() etc.
+?>
+```
+
+#### 4. **Set Up Your Local or Online PHP Server**:
+You can test your PHP scripts on your local machine or an online web hosting service.
+
+- **For Local Development:**
+  If you have PHP installed, you can use the built-in PHP server to test it locally:
+
+  ```bash
+  php -S localhost:8000
+  ```
+
+  This will start a local PHP server at `http://localhost:8000`. Now, visit `http://localhost:8000/index.php` in your browser to test the action.
+
+- **For Live Server:**
+  Simply upload both `MpesaController.php` and `index.php` to your hosting provider (via FTP or cPanel File Manager) and visit the corresponding URL (e.g., `http://yourdomain.com/index.php`).
+
+#### 5. **Configure M-Pesa API Credentials:**
+Before using any of the actions, ensure you have the following credentials from **Safaricom's Business API**:
+  - **Consumer Key**
+  - **Consumer Secret**
+  - **Shortcode**
+  - **Passkey** (for STK Push)
+  - **Initiator Password** (for B2C, B2B, and other transactions)
+
+You can replace placeholders like `your_consumer_key`, `your_consumer_secret`, and `600XXX` with your actual credentials in the class and functions.
+
+#### 6. **Testing the M-Pesa API**:
+To test if everything works:
+- Visit the page `index.php` in your browser.
+- This will call the desired action, such as `b2c()`, and return a response from the M-Pesa API.
+
+The response will be in JSON format, for example:
+```json
+{
+  "ResponseCode": "0",
+  "ResponseDescription": "Success",
+  "TransactionID": "OEI2AK4Q16"
+}
+```
+
+#### 7. **Handle Responses and Errors**:
+In the controller methods, you can handle success and failure cases.
+
+For example:
+```php
+public function b2c() {
+    // Your B2C request data here...
+    $response = $this->mpesa->b2c($data);
+
+    if ($response['ResponseCode'] == '0') {
+        // Transaction was successful
+        echo "Payment successful!";
+    } else {
+        // Transaction failed
+        echo "Payment failed. Error: " . $response['ResponseDescription'];
+    }
+}
+```
+
+### 8. **M-Pesa Callback**:
+Once you trigger transactions like STK Push or C2B, the M-Pesa API will send a callback to the **Confirmation URL** or **Validation URL** you provided. You can create PHP scripts to handle those callbacks.
+
+Example callback handler (`confirmation.php`):
+
+```php
+<?php
+
+// Receive the data from M-Pesa Callback
+$callbackData = file_get_contents('php://input');
+
+// Parse the data or log it
+file_put_contents('mpesa_callback.log', $callbackData);
+
+// You can process the callback data here, like checking payment status, etc.
+echo "Callback received.";
+?>
+```
+
+This will be used to receive and process callback notifications from M-Pesa.
+
+### Conclusion:
+1. **Set up the `MpesaController.php` with all the API methods** (e.g., `b2c()`, `stkPush()`, etc.).
+2. **Use the `index.php` to trigger the actions** from the controller.
+3. **Set up your credentials** to connect with the M-Pesa API (consumer key, secret, shortcode, etc.).
+4. **Test** your application on your local server or live hosting.
+5. **Handle responses** appropriately and configure the callback URLs.
+
+With this setup, you can easily call the M-Pesa API for various operations in your PHP application.
