@@ -296,4 +296,4 @@ $mpesa->finishTransaction(false); // failure
 Pull requests and suggestions welcome! Let’s improve mobile money in PHP together.
 
 ---
-# mpesa-sdk
+
