@@ -284,6 +284,36 @@ $mpesa->finishTransaction(false); // failure
 
 ---
 
+### 📥 Handling M-PESA Daraja Callback Responses
+
+To log the response from any M-PESA Daraja callback (e.g., `C2B Confirmation`, `C2B Validation`, `STK Push`, etc.), you can use the following snippet in your `callback.php` (or any relevant endpoint). This helps with debugging and record-keeping.
+
+```php
+<?php
+// callback.php
+
+// Capture raw POST data from Daraja
+$callbackData = file_get_contents('php://input');
+
+// Optional: Decode JSON for easier inspection
+// $decoded = json_decode($callbackData, true);
+
+// Define log file location (you can customize path)
+$logFile = __DIR__ . '/M_PESAConfirmationResponse.json';
+
+// Append the raw callback data with a newline for separation
+file_put_contents($logFile, $callbackData . PHP_EOL, FILE_APPEND);
+
+// You can add any additional logic to handle the data here
+```
+
+#### ✅ Best Practices:
+- Always log the full callback for reference during development and support.
+- Use different log files per endpoint if needed, like `STKCallback.json`, `C2BValidation.json`, etc.
+- Avoid exposing these logs publicly—store them securely or behind server-level access control.
+
+---
+
 ## 📘 More Info
 
 - Safaricom API docs: https://developer.safaricom.co.ke/
@@ -296,4 +326,3 @@ $mpesa->finishTransaction(false); // failure
 Pull requests and suggestions welcome! Let’s improve mobile money in PHP together.
 
 ---
-
