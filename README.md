@@ -52,7 +52,7 @@ $data = [
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
     'ResultURL' => 'https://yourdomain.com/result',
     'Occasion' => 'JunePayroll',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -76,7 +76,7 @@ $data = [
     'initiatorPassword' => 'Password of the API user',
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
     'ResultURL' => 'https://yourdomain.com/result',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -101,7 +101,7 @@ $data = [
     'initiatorPassword' => 'Password of the API user',
     'ResultURL' => 'https://yourdomain.com/result',
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -131,7 +131,7 @@ $data = [
     'Remarks' => 'B2B Payment',
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
     'ResultURL' => 'https://yourdomain.com/result',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -154,7 +154,7 @@ $data = [
     'Amount' => '500',
     'Msisdn' => '2547XXXXXXXX', // Customer phone
     'BillRefNumber' => 'INV2024',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -183,7 +183,7 @@ $data = [
     'AccountReference' => 'Ref001',
     'TransactionDesc' => 'Payment for services',
     'Remarks' => 'Online Payment',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -204,7 +204,7 @@ $data = [
     'checkoutRequestID' => 'ws_CO_123456789',
     'BusinessShortCode' => '174379',
     'LipaNaMpesaPasskey' => 'your_lnm_passkey',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -233,7 +233,7 @@ $data = [
     'Occasion' => 'ErroneousPayment',
     'Initiator' => 'API user',
     'initiatorPassword' => 'Password of the API user',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
@@ -255,7 +255,7 @@ $data = [
     'ResponseType' => 'Completed',
     'ConfirmationURL' => 'https://yourdomain.com/confirmation',
     'ValidationURL' => 'https://yourdomain.com/validation',
-    'environment' => 'sandbox',
+    'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
     'consumer_secret' => 'your_consumer_secret',
 ];
