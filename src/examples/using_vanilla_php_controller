@@ -8,7 +8,7 @@ If you're using a package that requires Composer, such as the **M-Pesa SDK**, yo
 If you're using a library like `Mpesa`, you should first install it using:
 
 ```bash
-composer require mpesa/mpesa
+composer require mpesa/mpesa-sdk
 ```
 
 But if you don’t want to use Composer and just want to copy the code I provided, you can ignore this step.
