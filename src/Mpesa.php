@@ -337,11 +337,11 @@ class Mpesa
         // Set environment and get token
         switch ($environment) {
             case 'live':
-                $url = 'https://api.safaricom.co.ke/mpesa/c2b/v1/simulate';
+                $url = 'https://api.safaricom.co.ke/mpesa/c2b/v2/simulate';
                 $token = self::generateLiveToken($consumer_key, $consumer_secret);
                 break;
             case 'sandbox':
-                $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+                $url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v2/simulate';
                 $token = self::generateSandBoxToken($consumer_key, $consumer_secret);
                 break;
             default:
