@@ -245,7 +245,6 @@ class Mpesa
         $requiredFields = [
             'InitiatorName',
             'initiatorPassword',
-            'SecurityCredential',
             'CommandID',
             'Amount',
             'PartyA',
