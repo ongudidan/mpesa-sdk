@@ -109,7 +109,7 @@ class TransactionCallbacks
         $transID=$callbackData->TransID;
         $transTime=$callbackData->TransTime;
         $transAmount=$callbackData->TransAmount;
-        $businessShortCode=$callbackData->BusinessShortCode;
+        $ShortCode=$callbackData->ShortCode;
         $billRefNumber=$callbackData->BillRefNumber;
         $invoiceNumber=$callbackData->InvoiceNumber;
         $orgAccountBalance=$callbackData->OrgAccountBalance;
@@ -122,7 +122,7 @@ class TransactionCallbacks
         $result=[
             $transTime=>$transTime,
             $transAmount=>$transAmount,
-            $businessShortCode=>$businessShortCode,
+            $ShortCode=>$ShortCode,
             $billRefNumber=>$billRefNumber,
             $invoiceNumber=>$invoiceNumber,
             $orgAccountBalance=>$orgAccountBalance,
@@ -151,7 +151,7 @@ class TransactionCallbacks
         $transID=$callbackData->TransID;
         $transTime=$callbackData->TransTime;
         $transAmount=$callbackData->TransAmount;
-        $businessShortCode=$callbackData->BusinessShortCode;
+        $ShortCode=$callbackData->ShortCode;
         $billRefNumber=$callbackData->BillRefNumber;
         $invoiceNumber=$callbackData->InvoiceNumber;
         $orgAccountBalance=$callbackData->OrgAccountBalance;
@@ -164,7 +164,7 @@ class TransactionCallbacks
         $result=[
             $transTime=>$transTime,
             $transAmount=>$transAmount,
-            $businessShortCode=>$businessShortCode,
+            $ShortCode=>$ShortCode,
             $billRefNumber=>$billRefNumber,
             $invoiceNumber=>$invoiceNumber,
             $orgAccountBalance=>$orgAccountBalance,
@@ -250,7 +250,7 @@ class TransactionCallbacks
         $resultCode=$callbackData->Body->stkCallback->ResultCode;
         $resultDesc=$callbackData->Body->stkCallback->ResultDesc;
         $merchantRequestID=$callbackData->Body->stkCallback->MerchantRequestID;
-        $checkoutRequestID=$callbackData->Body->stkCallback->CheckoutRequestID;
+        $CheckoutRequestID=$callbackData->Body->stkCallback->CheckoutRequestID;
 
         $amount=$callbackData->stkCallback->Body->CallbackMetadata->Item[0]->Value;
         $mpesaReceiptNumber=$callbackData->Body->stkCallback->CallbackMetadata->Item[1]->Value;
@@ -263,7 +263,7 @@ class TransactionCallbacks
             "resultDesc"=>$resultDesc,
             "resultCode"=>$resultCode,
             "merchantRequestID"=>$merchantRequestID,
-            "checkoutRequestID"=>$checkoutRequestID,
+            "CheckoutRequestID"=>$CheckoutRequestID,
             "amount"=>$amount,
             "mpesaReceiptNumber"=>$mpesaReceiptNumber,
             "balance"=>$balance,
@@ -285,7 +285,7 @@ class TransactionCallbacks
         $responseCode=$callbackData->ResponseCode;
         $responseDescription=$callbackData->ResponseDescription;
         $merchantRequestID=$callbackData->MerchantRequestID;
-        $checkoutRequestID=$callbackData->CheckoutRequestID;
+        $CheckoutRequestID=$callbackData->CheckoutRequestID;
         $resultCode=$callbackData->ResultCode;
         $resultDesc=$callbackData->ResultDesc;
 
@@ -294,7 +294,7 @@ class TransactionCallbacks
             "responseDescription"=>$responseDescription,
             "responseCode"=>$responseCode,
             "merchantRequestID"=>$merchantRequestID,
-            "checkoutRequestID"=>$checkoutRequestID,
+            "CheckoutRequestID"=>$CheckoutRequestID,
             "resultDesc"=>$resultDesc
         ];
 

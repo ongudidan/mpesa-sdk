@@ -21,12 +21,12 @@ class Mpesa
      * using the appropriate certificate based on the environment.
      *
      * @param string $environment Either 'live' or 'sandbox'.
-     * @param string $initiatorPassword The password of the initiator.
+     * @param string $InitiatorPassword The password of the initiator.
      * @return string Base64 encoded encrypted password.
      */
-    public static function generateSecurityCredential($environment, $initiatorPassword)
+    public static function generateSecurityCredential($environment, $InitiatorPassword)
     {
-        if (!isset($initiatorPassword)) {
+        if (!isset($InitiatorPassword)) {
             die("Please declare the initiator password as defined in the documentation.");
         }
 
@@ -47,7 +47,7 @@ class Mpesa
 
         // Encrypt the password using the certificate
         $certificate = file_get_contents($certificatePath);
-        openssl_public_encrypt($initiatorPassword, $encrypted, $certificate, OPENSSL_PKCS1_PADDING);
+        openssl_public_encrypt($InitiatorPassword, $encrypted, $certificate, OPENSSL_PKCS1_PADDING);
 
         // Return the base64-encoded encrypted password
         return base64_encode($encrypted);
@@ -157,7 +157,7 @@ class Mpesa
         $requiredFields = [
             'CommandID',
             'Initiator',
-            'initiatorPassword',
+            'InitiatorPassword',
             'TransactionID',
             'Amount',
             'ReceiverParty',
@@ -176,7 +176,7 @@ class Mpesa
         }
 
         // Generate security credential
-        $SecurityCredential = self::generateSecurityCredential($environment, $initiatorPassword);
+        $SecurityCredential = self::generateSecurityCredential($environment, $InitiatorPassword);
 
         // Set API URL and token based on environment
         switch ($environment) {
@@ -244,7 +244,7 @@ class Mpesa
         // Validate required fields
         $requiredFields = [
             'InitiatorName',
-            'initiatorPassword',
+            'InitiatorPassword',
             'CommandID',
             'Amount',
             'PartyA',
@@ -263,7 +263,7 @@ class Mpesa
         }
 
         // Generate security credential
-        $SecurityCredential = self::generateSecurityCredential($environment, $initiatorPassword);
+        $SecurityCredential = self::generateSecurityCredential($environment, $InitiatorPassword);
 
         // Set API URL and token based on environment
         switch ($environment) {
@@ -393,7 +393,7 @@ class Mpesa
         extract($data);
 
         // Validate required fields
-        $requiredFields = ['IdentifierType', 'QueueTimeOutURL', 'ResultURL', 'Initiator', 'initiatorPassword', 'PartyA', 'consumer_key', 'consumer_secret', 'environment'];
+        $requiredFields = ['IdentifierType', 'QueueTimeOutURL', 'ResultURL', 'Initiator', 'InitiatorPassword', 'PartyA', 'consumer_key', 'consumer_secret', 'environment'];
         foreach ($requiredFields as $field) {
             if (empty($$field)) {
                 die("Missing required field: $field");
@@ -401,7 +401,7 @@ class Mpesa
         }
 
         // Generate security credential
-        $SecurityCredential = self::generateSecurityCredential($environment, $initiatorPassword);
+        $SecurityCredential = self::generateSecurityCredential($environment, $InitiatorPassword);
 
         // Set CommandID and Remarks
         $CommandID = 'AccountBalance';
@@ -467,7 +467,7 @@ class Mpesa
         extract($data);
 
         // Validate required fields
-        $requiredFields = ['TransactionID', 'IdentifierType', 'ResultURL', 'QueueTimeOutURL', 'PartyA', 'Initiator', 'initiatorPassword', 'consumer_key', 'consumer_secret', 'environment'];
+        $requiredFields = ['TransactionID', 'IdentifierType', 'ResultURL', 'QueueTimeOutURL', 'PartyA', 'Initiator', 'InitiatorPassword', 'consumer_key', 'consumer_secret', 'environment'];
         foreach ($requiredFields as $field) {
             if (empty($$field)) {
                 die("Missing required field: $field");
@@ -475,7 +475,7 @@ class Mpesa
         }
 
         // Generate security credential
-        $SecurityCredential = self::generateSecurityCredential($environment, $initiatorPassword);
+        $SecurityCredential = self::generateSecurityCredential($environment, $InitiatorPassword);
 
         // Set CommandID and Remarks
         $CommandID = 'TransactionStatusQuery';
@@ -548,7 +548,7 @@ class Mpesa
         // Validate required fields
         $requiredFields = [
             'Initiator',
-            'initiatorPassword',
+            'InitiatorPassword',
             'Amount',
             'PartyA',
             'PartyB',
@@ -570,7 +570,7 @@ class Mpesa
         }
 
         // Generate security credential
-        $SecurityCredential = self::generateSecurityCredential($environment, $initiatorPassword);
+        $SecurityCredential = self::generateSecurityCredential($environment, $InitiatorPassword);
 
         // Set environment and get token
         switch ($environment) {
@@ -647,7 +647,7 @@ class Mpesa
             'TransactionDesc',
             'Remarks',
             'environment',
-            'BusinessShortCode',
+            'ShortCode',
             'LipaNaMpesaPasskey',
             'consumer_key',
             'consumer_secret'
@@ -674,7 +674,7 @@ class Mpesa
 
         // Generate password for the request using base64 encoding
         $timestamp = '20' . date("ymdhis");
-        $password = base64_encode($BusinessShortCode . $LipaNaMpesaPasskey . $timestamp);
+        $password = base64_encode($ShortCode . $LipaNaMpesaPasskey . $timestamp);
 
         // Prepare cURL request
         $curl = curl_init($url);
@@ -686,7 +686,7 @@ class Mpesa
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode([
-                'BusinessShortCode' => $BusinessShortCode,
+                'ShortCode' => $ShortCode,
                 'Password' => $password,
                 'Timestamp' => $timestamp,
                 'TransactionType' => $TransactionType,
@@ -727,7 +727,7 @@ class Mpesa
         extract($data);
 
         // Validate required fields
-        $requiredFields = ['checkoutRequestID', 'environment', 'consumer_key', 'consumer_secret', 'BusinessShortCode', 'LipaNaMpesaPasskey'];
+        $requiredFields = ['CheckoutRequestID', 'environment', 'consumer_key', 'consumer_secret', 'ShortCode', 'LipaNaMpesaPasskey'];
         foreach ($requiredFields as $field) {
             if (empty($$field)) {
                 die("Missing required field: $field");
@@ -750,7 +750,7 @@ class Mpesa
 
         // Generate password for the request using base64 encoding
         $timestamp = '20' . date("ymdhis");
-        $password = base64_encode($BusinessShortCode . $LipaNaMpesaPasskey . $timestamp);
+        $password = base64_encode($ShortCode . $LipaNaMpesaPasskey . $timestamp);
 
         // Prepare cURL request
         $curl = curl_init($url);
@@ -762,10 +762,10 @@ class Mpesa
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode([
-                'BusinessShortCode' => $BusinessShortCode,
+                'ShortCode' => $ShortCode,
                 'Password' => $password,
                 'Timestamp' => $timestamp,
-                'CheckoutRequestID' => $checkoutRequestID
+                'CheckoutRequestID' => $CheckoutRequestID
             ])
         ]);
 

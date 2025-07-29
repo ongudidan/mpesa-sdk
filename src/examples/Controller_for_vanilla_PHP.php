@@ -18,7 +18,7 @@ class MpesaController
     {
         $data = [
             'Initiator' => 'API user created on Safaricom Business dashboard',
-            'initiatorPassword' => 'Password of the API user',
+            'InitiatorPassword' => 'Password of the API user',
             'CommandID' => 'BusinessPayment', // or SalaryPayment, PromotionPayment
             'Amount' => '100', // Amount to send
             'PartyA' => '600XXX', // Your shortcode
@@ -42,7 +42,7 @@ class MpesaController
             'IdentifierType' => '4', // 1: Shortcode, 2: Till, 4: Org
             'PartyA' => '600XXX', // Your shortcode or organization ID
             'Initiator' => 'API user created on dashboard',
-            'initiatorPassword' => 'Password of the API user',
+            'InitiatorPassword' => 'Password of the API user',
             'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
             'ResultURL' => 'https://yourdomain.com/result',
             'environment' => 'sandbox',
@@ -61,7 +61,7 @@ class MpesaController
             'PartyA' => '600XXX', // Your shortcode
             'IdentifierType' => '1', // 1: Shortcode, 2: Till, etc.
             'Initiator' => 'API user',
-            'initiatorPassword' => 'Password of the API user',
+            'InitiatorPassword' => 'Password of the API user',
             'ResultURL' => 'https://yourdomain.com/result',
             'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
             'environment' => 'sandbox',
@@ -77,7 +77,7 @@ class MpesaController
     {
         $data = [
             'Initiator' => 'API user',
-            'initiatorPassword' => 'Password of the API user',
+            'InitiatorPassword' => 'Password of the API user',
             'CommandID' => 'BusinessPayBill', // or MerchantToMerchantTransfer
             'SenderIdentifierType' => '4',
             'RecieverIdentifierType' => '4',
@@ -117,7 +117,7 @@ class MpesaController
     public function stkPush()
     {
         $data = [
-            'BusinessShortCode' => '174379',
+            'ShortCode' => '174379',
             'LipaNaMpesaPasskey' => 'your_lnm_passkey',
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => '100',
@@ -140,8 +140,8 @@ class MpesaController
     public function stkPushQuery()
     {
         $data = [
-            'checkoutRequestID' => 'ws_CO_123456789',
-            'BusinessShortCode' => '174379',
+            'CheckoutRequestID' => 'ws_CO_123456789',
+            'ShortCode' => '174379',
             'LipaNaMpesaPasskey' => 'your_lnm_passkey',
             'environment' => 'sandbox',
             'consumer_key' => 'your_consumer_key',
@@ -165,7 +165,7 @@ class MpesaController
             'Remarks' => 'Refund for duplicate payment',
             'Occasion' => 'ErroneousPayment',
             'Initiator' => 'API user',
-            'initiatorPassword' => 'Password of the API user',
+            'InitiatorPassword' => 'Password of the API user',
             'environment' => 'sandbox',
             'consumer_key' => 'your_consumer_key',
             'consumer_secret' => 'your_consumer_secret',

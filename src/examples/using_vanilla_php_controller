@@ -37,7 +37,7 @@ class MpesaController {
     public function b2c() {
         $data = [
             'Initiator' => 'API user created on Safaricom Business dashboard',
-            'initiatorPassword' => 'Password of the API user',
+            'InitiatorPassword' => 'Password of the API user',
             'CommandID' => 'BusinessPayment', // or SalaryPayment, PromotionPayment
             'Amount' => '100', // Amount to send
             'PartyA' => '600XXX', // Your shortcode
