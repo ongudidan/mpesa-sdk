@@ -327,7 +327,7 @@ class Mpesa
         extract($data);
 
         // Validate required fields
-        $requiredFields = ['ShortCode', 'CommandID', 'Amount', 'Msisdn', 'consumer_key', 'consumer_secret', 'environment'];
+        $requiredFields = ['BusinessShortCode', 'CommandID', 'Amount', 'Msisdn', 'consumer_key', 'consumer_secret', 'environment'];
         foreach ($requiredFields as $field) {
             if (empty($$field)) {
                 die("Missing required field: $field");
@@ -358,7 +358,7 @@ class Mpesa
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode([
-                'ShortCode' => $ShortCode,
+                'BusinessShortCode' => $BusinessShortCode,
                 'CommandID' => $CommandID,
                 'Amount' => $Amount,
                 'Msisdn' => $Msisdn,
@@ -647,7 +647,7 @@ class Mpesa
             'TransactionDesc',
             'Remarks',
             'environment',
-            'ShortCode',
+            'BusinessShortCode',
             'LipaNaMpesaPasskey',
             'consumer_key',
             'consumer_secret'
@@ -674,7 +674,7 @@ class Mpesa
 
         // Generate password for the request using base64 encoding
         $timestamp = '20' . date("ymdhis");
-        $password = base64_encode($ShortCode . $LipaNaMpesaPasskey . $timestamp);
+        $password = base64_encode($BusinessShortCode . $LipaNaMpesaPasskey . $timestamp);
 
         // Prepare cURL request
         $curl = curl_init($url);
@@ -686,7 +686,7 @@ class Mpesa
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode([
-                'ShortCode' => $ShortCode,
+                'BusinessShortCode' => $BusinessShortCode,
                 'Password' => $password,
                 'Timestamp' => $timestamp,
                 'TransactionType' => $TransactionType,
@@ -727,7 +727,7 @@ class Mpesa
         extract($data);
 
         // Validate required fields
-        $requiredFields = ['CheckoutRequestID', 'environment', 'consumer_key', 'consumer_secret', 'ShortCode', 'LipaNaMpesaPasskey'];
+        $requiredFields = ['CheckoutRequestID', 'environment', 'consumer_key', 'consumer_secret', 'BusinessShortCode', 'LipaNaMpesaPasskey'];
         foreach ($requiredFields as $field) {
             if (empty($$field)) {
                 die("Missing required field: $field");
@@ -750,7 +750,7 @@ class Mpesa
 
         // Generate password for the request using base64 encoding
         $timestamp = '20' . date("ymdhis");
-        $password = base64_encode($ShortCode . $LipaNaMpesaPasskey . $timestamp);
+        $password = base64_encode($BusinessShortCode . $LipaNaMpesaPasskey . $timestamp);
 
         // Prepare cURL request
         $curl = curl_init($url);
@@ -762,7 +762,7 @@ class Mpesa
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => json_encode([
-                'ShortCode' => $ShortCode,
+                'BusinessShortCode' => $BusinessShortCode,
                 'Password' => $password,
                 'Timestamp' => $timestamp,
                 'CheckoutRequestID' => $CheckoutRequestID
@@ -826,7 +826,7 @@ class Mpesa
         $environment = $data['environment'];
         $consumer_key = $data['consumer_key'];
         $consumer_secret = $data['consumer_secret'];
-        $ShortCode = $data['ShortCode'];
+        $BusinessShortCode = $data['BusinessShortCode'];
 
         // Determine the environment and set the appropriate URL and token
         if ($environment === "live") {
@@ -839,9 +839,9 @@ class Mpesa
             return json_encode(["Message" => "invalid application status"]);
         }
 
-        // Ensure the ShortCode is set
-        if (!isset($ShortCode)) {
-            return json_encode(["Message" => "Please declare the business shortcode as defined in the documentation"]);
+        // Ensure the BusinessShortCode is set
+        if (!isset($BusinessShortCode)) {
+            return json_encode(["Message" => "Please declare the business BusinessShortCode as defined in the documentation"]);
         }
 
         // Initialize cURL and set options
@@ -851,7 +851,7 @@ class Mpesa
 
         // Prepare the POST data
         $curl_post_data = [
-            'ShortCode' => $ShortCode,
+            'BusinessShortCode' => $BusinessShortCode,
             'ResponseType' => $ResponseType,
             'ConfirmationURL' => $ConfirmationURL,
             'ValidationURL' => $ValidationURL,

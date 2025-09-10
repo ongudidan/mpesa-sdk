@@ -21,7 +21,7 @@ class MpesaController
             'InitiatorPassword' => 'Password of the API user',
             'CommandID' => 'BusinessPayment', // or SalaryPayment, PromotionPayment
             'Amount' => '100', // Amount to send
-            'PartyA' => '600XXX', // Your shortcode
+            'PartyA' => '600XXX', // Your BusinessShortCode
             'PartyB' => '2547XXXXXXXX', // Customer phone number
             'Remarks' => 'Salary payment',
             'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
@@ -39,8 +39,8 @@ class MpesaController
     public function accountBalance()
     {
         $data = [
-            'IdentifierType' => '4', // 1: Shortcode, 2: Till, 4: Org
-            'PartyA' => '600XXX', // Your shortcode or organization ID
+            'IdentifierType' => '4', // 1: BusinessShortCode, 2: Till, 4: Org
+            'PartyA' => '600XXX', // Your BusinessShortCode or organization ID
             'Initiator' => 'API user created on dashboard',
             'InitiatorPassword' => 'Password of the API user',
             'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
@@ -58,8 +58,8 @@ class MpesaController
     {
         $data = [
             'TransactionID' => 'OEI2AK4Q16', // M-Pesa transaction ID
-            'PartyA' => '600XXX', // Your shortcode
-            'IdentifierType' => '1', // 1: Shortcode, 2: Till, etc.
+            'PartyA' => '600XXX', // Your BusinessShortCode
+            'IdentifierType' => '1', // 1: BusinessShortCode, 2: Till, etc.
             'Initiator' => 'API user',
             'InitiatorPassword' => 'Password of the API user',
             'ResultURL' => 'https://yourdomain.com/result',
@@ -82,8 +82,8 @@ class MpesaController
             'SenderIdentifierType' => '4',
             'RecieverIdentifierType' => '4',
             'Amount' => '1000',
-            'PartyA' => '600XXX', // Your shortcode
-            'PartyB' => '600YYY', // Recipient shortcode
+            'PartyA' => '600XXX', // Your BusinessShortCode
+            'PartyB' => '600YYY', // Recipient BusinessShortCode
             'AccountReference' => 'Invoice#234',
             'Remarks' => 'B2B Payment',
             'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
@@ -100,7 +100,7 @@ class MpesaController
     public function c2b()
     {
         $data = [
-            'ShortCode' => '600XXX',
+            'BusinessShortCode' => '600XXX',
             'CommandID' => 'CustomerPayBillOnline', // or CustomerBuyGoodsOnline
             'Amount' => '500',
             'Msisdn' => '2547XXXXXXXX', // Customer phone
@@ -117,12 +117,12 @@ class MpesaController
     public function stkPush()
     {
         $data = [
-            'ShortCode' => '174379',
+            'BusinessShortCode' => '174379',
             'LipaNaMpesaPasskey' => 'your_lnm_passkey',
             'TransactionType' => 'CustomerPayBillOnline',
             'Amount' => '100',
             'PartyA' => '2547XXXXXXXX', // Customer phone
-            'PartyB' => '174379', // Your shortcode
+            'PartyB' => '174379', // Your BusinessShortCode
             'PhoneNumber' => '2547XXXXXXXX',
             'CallBackURL' => 'https://yourdomain.com/callback',
             'AccountReference' => 'Ref001',
@@ -141,7 +141,7 @@ class MpesaController
     {
         $data = [
             'CheckoutRequestID' => 'ws_CO_123456789',
-            'ShortCode' => '174379',
+            'BusinessShortCode' => '174379',
             'LipaNaMpesaPasskey' => 'your_lnm_passkey',
             'environment' => 'sandbox',
             'consumer_key' => 'your_consumer_key',
@@ -178,7 +178,7 @@ class MpesaController
     public function registerUrls()
     {
         $data = [
-            'ShortCode' => '600XXX',
+            'BusinessShortCode' => '600XXX',
             'ResponseType' => 'Completed',
             'ConfirmationURL' => 'https://yourdomain.com/confirmation',
             'ValidationURL' => 'https://yourdomain.com/validation',

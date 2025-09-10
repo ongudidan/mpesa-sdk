@@ -36,7 +36,7 @@ You can pass credentials directly in the data array or load them using environme
 
 ### ✅ B2C (Business to Customer)
 
-Send funds from your shortcode to a customer's phone.
+Send funds from your BusinessShortCode to a customer's phone.
 
 ```php
 $mpesa = new \Mpesa\Mpesa();
@@ -46,7 +46,7 @@ $data = [
     'InitiatorPassword' => 'Password of the API user',
     'CommandID' => 'BusinessPayment', // or SalaryPayment, PromotionPayment
     'Amount' => '100', // Amount to send
-    'PartyA' => '600XXX', // Your shortcode
+    'PartyA' => '600XXX', // Your BusinessShortCode
     'PartyB' => '2547XXXXXXXX', // Customer phone number
     'Remarks' => 'Salary payment',
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
@@ -70,8 +70,8 @@ Check your Paybill/Till balance.
 $mpesa = new \Mpesa\Mpesa();
 
 $data = [
-    'IdentifierType' => '4', // 1: Shortcode, 2: Till, 4: Org
-    'PartyA' => '600XXX', // Your shortcode or organization ID
+    'IdentifierType' => '4', // 1: BusinessShortCode, 2: Till, 4: Org
+    'PartyA' => '600XXX', // Your BusinessShortCode or organization ID
     'Initiator' => 'API user created on dashboard',
     'InitiatorPassword' => 'Password of the API user',
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
@@ -95,7 +95,7 @@ $mpesa = new \Mpesa\Mpesa();
 
 $data = [
     'TransactionID' => 'OEI2AK4Q16', // M-Pesa transaction ID
-    'PartyA' => '600XXX', // Your shortcode
+    'PartyA' => '600XXX', // Your BusinessShortCode
     'IdentifierType' => '4', // 1: MSISDN (Phone number), 2: Till 4: Paybill, etc.
     'Initiator' => 'API user',
     'InitiatorPassword' => 'Password of the API user',
@@ -125,8 +125,8 @@ $data = [
     'SenderIdentifierType' => '4',
     'RecieverIdentifierType' => '4',
     'Amount' => '1000',
-    'PartyA' => '600XXX', // Your shortcode
-    'PartyB' => '600YYY', // Recipient shortcode
+    'PartyA' => '600XXX', // Your BusinessShortCode
+    'PartyB' => '600YYY', // Recipient BusinessShortCode
     'AccountReference' => 'Invoice#234',
     'Remarks' => 'B2B Payment',
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
@@ -143,13 +143,13 @@ $response = $mpesa->b2b($data);
 
 ### 👥 C2B (Customer to Business Simulation)
 
-Simulate a customer payment to your shortcode.
+Simulate a customer payment to your BusinessShortCode.
 
 ```php
 $mpesa = new \Mpesa\Mpesa();
 
 $data = [
-    'ShortCode' => '600XXX',
+    'BusinessShortCode' => '600XXX',
     'CommandID' => 'CustomerPayBillOnline', // or CustomerBuyGoodsOnline
     'Amount' => '500',
     'Msisdn' => '2547XXXXXXXX', // Customer phone
@@ -172,12 +172,12 @@ Trigger a payment prompt on a customer's phone.
 $mpesa = new \Mpesa\Mpesa();
 
 $data = [
-    'ShortCode' => '174379',
+    'BusinessShortCode' => '174379',
     'LipaNaMpesaPasskey' => 'your_lnm_passkey',
     'TransactionType' => 'CustomerPayBillOnline',
     'Amount' => '100',
     'PartyA' => '2547XXXXXXXX', // Customer phone
-    'PartyB' => '174379', // Your shortcode
+    'PartyB' => '174379', // Your BusinessShortCode
     'PhoneNumber' => '2547XXXXXXXX',
     'CallBackURL' => 'https://yourdomain.com/callback',
     'AccountReference' => 'Ref001',
@@ -202,7 +202,7 @@ $mpesa = new \Mpesa\Mpesa();
 
 $data = [
     'CheckoutRequestID' => 'ws_CO_123456789',
-    'ShortCode' => '174379',
+    'BusinessShortCode' => '174379',
     'LipaNaMpesaPasskey' => 'your_lnm_passkey',
     'environment' => 'sandbox or live',
     'consumer_key' => 'your_consumer_key',
@@ -225,8 +225,8 @@ $data = [
     'CommandID' => 'TransactionReversal',
     'TransactionID' => 'OEI2AK4Q16',
     'Amount' => '100',
-    'ReceiverParty' => '600XXX', //your shortcode 
-    'RecieverIdentifierType' => '11', //11: when using shortcode
+    'ReceiverParty' => '600XXX', //your BusinessShortCode
+    'RecieverIdentifierType' => '11', //11: when using BusinessShortCode
     'ResultURL' => 'https://yourdomain.com/result',
     'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
     'Remarks' => 'Refund for duplicate payment',
@@ -251,7 +251,7 @@ Register endpoints to handle C2B payments.
 $mpesa = new \Mpesa\Mpesa();
 
 $data = [
-    'ShortCode' => '600XXX',
+    'BusinessShortCode' => '600XXX',
     'ResponseType' => 'Completed',
     'ConfirmationURL' => 'https://yourdomain.com/confirmation',
     'ValidationURL' => 'https://yourdomain.com/validation',
@@ -308,6 +308,7 @@ file_put_contents($logFile, $callbackData . PHP_EOL, FILE_APPEND);
 ```
 
 #### ✅ Best Practices:
+
 - Always log the full callback for reference during development and support.
 - Use different log files per endpoint if needed, like `STKCallback.json`, `C2BValidation.json`, etc.
 - Avoid exposing these logs publicly—store them securely or behind server-level access control.

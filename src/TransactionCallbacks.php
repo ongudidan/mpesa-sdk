@@ -109,7 +109,7 @@ class TransactionCallbacks
         $transID=$callbackData->TransID;
         $transTime=$callbackData->TransTime;
         $transAmount=$callbackData->TransAmount;
-        $ShortCode=$callbackData->ShortCode;
+        $BusinessShortCode=$callbackData->BusinessShortCode;
         $billRefNumber=$callbackData->BillRefNumber;
         $invoiceNumber=$callbackData->InvoiceNumber;
         $orgAccountBalance=$callbackData->OrgAccountBalance;
@@ -122,7 +122,7 @@ class TransactionCallbacks
         $result=[
             $transTime=>$transTime,
             $transAmount=>$transAmount,
-            $ShortCode=>$ShortCode,
+            $BusinessShortCode=>$BusinessShortCode,
             $billRefNumber=>$billRefNumber,
             $invoiceNumber=>$invoiceNumber,
             $orgAccountBalance=>$orgAccountBalance,
@@ -151,7 +151,7 @@ class TransactionCallbacks
         $transID=$callbackData->TransID;
         $transTime=$callbackData->TransTime;
         $transAmount=$callbackData->TransAmount;
-        $ShortCode=$callbackData->ShortCode;
+        $BusinessShortCode=$callbackData->BusinessShortCode;
         $billRefNumber=$callbackData->BillRefNumber;
         $invoiceNumber=$callbackData->InvoiceNumber;
         $orgAccountBalance=$callbackData->OrgAccountBalance;
@@ -164,7 +164,7 @@ class TransactionCallbacks
         $result=[
             $transTime=>$transTime,
             $transAmount=>$transAmount,
-            $ShortCode=>$ShortCode,
+            $BusinessShortCode=>$BusinessShortCode,
             $billRefNumber=>$billRefNumber,
             $invoiceNumber=>$invoiceNumber,
             $orgAccountBalance=>$orgAccountBalance,

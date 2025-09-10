@@ -40,7 +40,7 @@ class MpesaController {
             'InitiatorPassword' => 'Password of the API user',
             'CommandID' => 'BusinessPayment', // or SalaryPayment, PromotionPayment
             'Amount' => '100', // Amount to send
-            'PartyA' => '600XXX', // Your shortcode
+            'PartyA' => '600XXX', // Your BusinessShortCode
             'PartyB' => '2547XXXXXXXX', // Customer phone number
             'Remarks' => 'Salary payment',
             'QueueTimeOutURL' => 'https://yourdomain.com/timeout',
@@ -99,7 +99,7 @@ You can test your PHP scripts on your local machine or an online web hosting ser
 Before using any of the actions, ensure you have the following credentials from **Safaricom's Business API**:
   - **Consumer Key**
   - **Consumer Secret**
-  - **Shortcode**
+  - **BusinessShortCode**
   - **Passkey** (for STK Push)
   - **Initiator Password** (for B2C, B2B, and other transactions)
 
@@ -162,7 +162,7 @@ This will be used to receive and process callback notifications from M-Pesa.
 ### Conclusion:
 1. **Set up the `MpesaController.php` with all the API methods** (e.g., `b2c()`, `stkPush()`, etc.).
 2. **Use the `index.php` to trigger the actions** from the controller.
-3. **Set up your credentials** to connect with the M-Pesa API (consumer key, secret, shortcode, etc.).
+3. **Set up your credentials** to connect with the M-Pesa API (consumer key, secret, BusinessShortCode, etc.).
 4. **Test** your application on your local server or live hosting.
 5. **Handle responses** appropriately and configure the callback URLs.
 
