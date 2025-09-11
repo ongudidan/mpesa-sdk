@@ -556,7 +556,7 @@ class Mpesa
             'QueueTimeOutURL',
             'ResultURL',
             'AccountReference',
-            'commandID',
+            'CommandID',
             'SenderIdentifierType',
             'RecieverIdentifierType',
             'consumer_key',
@@ -598,7 +598,7 @@ class Mpesa
             CURLOPT_POSTFIELDS => json_encode([
                 'Initiator' => $Initiator,
                 'SecurityCredential' => $SecurityCredential,
-                'CommandID' => $commandID,
+                'CommandID' => $CommandID,
                 'SenderIdentifierType' => $SenderIdentifierType,
                 'RecieverIdentifierType' => $RecieverIdentifierType,
                 'Amount' => $Amount,
