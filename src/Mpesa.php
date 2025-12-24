@@ -851,7 +851,7 @@ class Mpesa
 
         // Prepare the POST data
         $curl_post_data = [
-            'BusinessShortCode' => $BusinessShortCode,
+            'ShortCode' => $BusinessShortCode,
             'ResponseType' => $ResponseType,
             'ConfirmationURL' => $ConfirmationURL,
             'ValidationURL' => $ValidationURL,
